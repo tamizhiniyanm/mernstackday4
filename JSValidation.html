@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <h2>Java Script Validation</h2>
+        <p>Please Enter A  Number For Validation</p>
+        <input id="val">
+        <button type="button" onClick="myFun()">Submit</button>
+        <p id="demo"></p>
+            <script>
+            function myFun(){
+                let a = document.getElementById("val").value;
+                let res;
+                if(a<1||a>10){
+                    res="Input Incorrect";
+                }else{
+                    res="Validation Success";
+                }
+                document.getElementById("demo").innerHTML=res;
+            }
+            </script>
+        
+    </body>
+</html>

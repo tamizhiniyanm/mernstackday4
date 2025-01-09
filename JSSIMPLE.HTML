@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #xx {
+            width: 410px;
+            height: 410px;
+            background-color: red;
+            position: relative;
+            overflow: hidden;
+        }
+        #animate {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(128, 0, 100);
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <p><button onclick="myMove()">Click me</button></p>
+    <div id="xx">
+        <div id="animate"></div>
+    </div>
+    <script>
+        function myMove() {
+            let id = null;
+            const obj = document.getElementById("animate");
+            let posX = 0, posY = 0; // Starting positions
+            let dx = 2, dy = 2; // Movement increments
+            const boxSize = 50; // Size of the box
+            const containerSize = 410; // Size of the container
+
+            clearInterval(id);
+            id = setInterval(frame, 10);
+
+            function frame() {
+                // Update positions
+                posX += dx;
+                posY += dy;
+
+                // Bounce logic for X-axis
+                if (posX <= 0 || posX >= containerSize - boxSize) {
+                    dx = -dx;
+                    changeColor();
+                }
+
+                // Bounce logic for Y-axis
+                if (posY <= 0 || posY >= containerSize - boxSize) {
+                    dy = -dy;
+                    changeColor();
+                }
+
+                // Apply new positions
+                obj.style.left = posX + "px";
+                obj.style.top = posY + "px";
+            }
+
+            // Function to generate a random color and apply it to the box
+            function changeColor() {
+                const randomColor = `rgb(${Math.floor(Math.random() * 256)}, 
+                                         ${Math.floor(Math.random() * 256)}, 
+                                         ${Math.floor(Math.random() * 256)})`;
+                obj.style.backgroundColor = randomColor;
+            }
+        }
+    </script>
+</body>
+</html>

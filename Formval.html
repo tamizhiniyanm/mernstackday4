@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Courier, monospace;
+            font-weight: bold;
+            background-color: #1e1e1e;
+            color: #07c9ffdb;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        body h1 {
+            text-align: center;
+        }
+        body p {
+            text-align: center;
+        }
+        h2{
+            text-align: center;
+        }
+        .form-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 20px;
+            width: 30%;
+            height: auto;
+            margin: 20px auto;
+            line-height: 2;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 20px rgba(3, 217, 245, 0.393);
+            text-align: left;
+        }
+        .form-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px red;
+        }
+        .button {
+            font-family: Courier, monospace;
+            font-weight: bold;
+            background-color: rgb(5, 248, 240);
+            color: black;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            margin-top: 10px;
+        }
+        .button:hover { 
+             background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+                transform: translateY(-5px);
+                box-shadow: #fc0000 0 5px 10px;
+                transition: transform 2s, box-shadow 0.5s;
+
+        }
+        .log {
+            font-family: Courier, monospace;
+            font-weight: bold;
+            color: #f0f0f0;
+            text-decoration: underline;
+        }
+        .log:hover {
+            color: red;
+        }
+        .form input[type="text"], .form input[type="email"], .form input[type="password"] {
+            font-family: Courier, monospace;
+            font-weight: bold;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #f0f0f0;
+            width: calc(100% - 22px);
+        }
+        .form input[type="text"]:hover, .form input[type="email"]:hover, .form input[type="password"]:hover {
+            border: 1px solid red;
+            box-shadow: 0 5px 5px rgba(3, 217, 245, 0.393);
+        }
+        .form input[type="text"]:focus, .form input[type="email"]:focus, .form input[type="password"]:focus {
+            border: 1px solid red;
+            box-shadow: 0 5px 5px rgba(3, 217, 245, 0.393);
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Form Validation</h2>
+        <form id="myfrm" class="form">
+            <div class="form-one">
+                <label for="username">UserName</label>
+                <input type="text" id="username" name="username">
+                <div class="error" id="usernameerror"></div>
+            </div>   
+            <div class="form-one">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <div class="error" id="emailerror"></div>
+            </div> 
+            <div class="form-one">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <div class="error" id="passworderror"></div>
+            </div> 
+           <center> <button type="submit" class="button">Submit</button></center>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("myfrm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("usernameerror").textContent = "";
+            document.getElementById("emailerror").textContent = "";
+            document.getElementById("passworderror").textContent = "";
+
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            let valid = true;
+
+            if (username === "") {
+                document.getElementById("usernameerror").textContent = "User name is required.";
+                valid = false;
+            }
+
+            if (email === "") {
+                document.getElementById("emailerror").textContent = "Email is required.";
+                valid = false;
+            }
+
+            if (password === "") {
+                document.getElementById("passworderror").textContent = "Password is required.";
+                valid = false;
+            }
+
+            if (valid) {
+                alert("Form Validated Successfully");
+            } else {
+                alert("Form is invalid");
+            }
+        });
+    </script>
+</body>
+</html>
